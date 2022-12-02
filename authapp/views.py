@@ -29,6 +29,22 @@ def signup(request):
     return render(request, 'signup.html')
 
 def handlogin(request):
+    if request.method=="POST":
+        get_email=request.POST.get('email')
+        get_pass1=request.POST.get('pass1')
+        myuser=authenticate(username=get_email, password=get_pass1)
+        print(myuser)
+       
+        if myuser==None:
+            # print("hello")
+            messages.error(request, "invailed, credential")
+        else:
+            login(request, myuser)
+            messages.success(request, "Login Success")
+            return redirect("/")
     return render(request, 'login.html')
 def handlogout(request):
+
+    logout(request)
+    messages.success(request, "You logout success")
     return render(request, 'login.html')
