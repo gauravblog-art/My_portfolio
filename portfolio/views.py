@@ -5,6 +5,8 @@ from django.contrib import messages
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
+def Resume(request):
+    return render(request, 'resume.html')
 def handleblog(request):
     
     posts=Blogs.objects.all()
